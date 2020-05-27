@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "356240487287",
+    "firebase_url": "https://my-fitness-growth.firebaseio.com",
+    "project_id": "my-fitness-growth",
+    "storage_bucket": "my-fitness-growth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356240487287:android:dfff68e7c48dd073182772",
+        "android_client_info": {
+          "package_name": "com.example.my_fitness_growth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356240487287-vafg2eodd7fa8s7jiqh3al157251km1j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.my_fitness_growth",
+            "certificate_hash": "aafcca01d7ed7732c85bd6ff4bd9b34393cc5bd1"
+          }
+        },
+        {
+          "client_id": "356240487287-u3mjbmr3k1g6mh8v62ae9mc9bojthnds.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAySd2FJ6XDYMt2RitQTQhOyl6yDsuO1Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356240487287-u3mjbmr3k1g6mh8v62ae9mc9bojthnds.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
