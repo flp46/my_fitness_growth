@@ -30,9 +30,6 @@ class _LoginScreen extends State<LoginScreen>{
       stream: userBloc.isLogin,
       builder: (BuildContext context, AsyncSnapshot snapshot){
         if (snapshot.hasData){
-          print('hola ${snapshot} dos');
-          // dataUser();
-
           return Container(
             color: Colors.brown,
           );
