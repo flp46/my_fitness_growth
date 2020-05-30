@@ -7,7 +7,7 @@ class UserBloc implements Bloc{
   final _firebaseAuthRepository = FirebaseAuthRepository();
 
   //Con este metodo registro con email y contraseña
-  Future<AuthResult> register(email, pass) => _firebaseAuthRepository.registerFirebase(email, pass);
+  Future register(email, pass) => _firebaseAuthRepository.registerFirebase(email, pass);
   //Con este metodo logeo con email y contraseña
   Future<AuthResult> login(email, pass) => _firebaseAuthRepository.loginFirebase(email, pass);
   //Creo el observable que va a monitorear el cambio de estado

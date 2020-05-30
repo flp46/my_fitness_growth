@@ -5,7 +5,7 @@ class FirebaseAuthRepository{
 
   final _firebaseAuthAPI = FirebaseAuthAPI();
 
-  Future<AuthResult> registerFirebase(email, pass) => _firebaseAuthAPI.registerWithCredentials(email, pass); 
+  Future registerFirebase(email, pass) => _firebaseAuthAPI.registerWithCredentials(email, pass); 
   Future<AuthResult> loginFirebase(email, pass) => _firebaseAuthAPI.loginWithCredentials(email, pass); 
 
 }

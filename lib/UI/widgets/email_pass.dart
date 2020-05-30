@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:my_fitness_growth/UI/widgets/snackbar_error.dart';
 import 'package:my_fitness_growth/Usuario/Bloc/user_bloc.dart';
 
 class ShowHidePass extends ChangeNotifier{
 
   bool binary = true;
+  bool isPressed = true;
 
-  void changeBinary(){
+  //CONTROLA LA VISIBILIDAD DE LA CONTRASEÑA
+  void changeBinaryEye(){
     binary = !binary;
+    notifyListeners();
+  }
+
+  //CONTROLA SI SE HACE CLICK MUY RAPIDO EN EL BOTON DE REGISTRARME
+  void changeBinaryButton(){
+    isPressed = !isPressed;
     notifyListeners();
   }
 
@@ -18,6 +27,7 @@ class ShowHidePass extends ChangeNotifier{
 class LoginEmail extends StatelessWidget{
 
   UserBloc userBloc;
+  SnackbarError errorMessage = SnackbarError();
   final showHide = ShowHidePass();
 
   @override
@@ -72,17 +82,28 @@ class LoginEmail extends StatelessWidget{
                   IconButton(
                     icon: showHide.binary ? Icon(Icons.visibility) : Icon(Icons.visibility_off), 
                     onPressed: (){
-                      showHide.changeBinary();
+                      showHide.changeBinaryEye();
                     }
                   )
                 ],
               ),  
               RaisedButton(
                 onPressed: (){
-                  print(emailController.text);
-                  userBloc.register(emailController.text, passController.text);
+                  if (showHide.isPressed == true){
+                    showHide.changeBinaryButton();
+                    userBloc.register(emailController.text.trim(), passController.text).then((value){
+                      // SI SE PRESENTA UN ERROR EN EL REGISTRO, EN EL VALUE VIENE EL MENSAJE DE ERROR REPORTADO POR FIREBASE Y LO MUESTRO EN LA UI CON UN SNACKBAR QUE RECIBE EL MSJ DE ERROR
+                      if (value != null){
+                        Scaffold.of(context).showSnackBar(SnackbarError(errorMessage: value).showError());
+                        showHide.changeBinaryButton();
+                      }
+                      //PENDIENTE: QUE PASA SI EL USUARIO CIERRA SESION? EL BOTON DE REGISTRARME VUELVE A ESTAR ACTIVO?
+                    });
+                  } else {
+                    print('No tan rapidoooooo');
+                  }
                 },
-                child: Text('Form'),
+                child: showHide.isPressed ? Text('Registrarme') : CircularProgressIndicator(),
               )       
             ]
           ),
