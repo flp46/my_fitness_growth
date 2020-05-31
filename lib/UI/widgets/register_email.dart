@@ -24,7 +24,7 @@ class ShowHidePass extends ChangeNotifier{
 
 
 
-class LoginEmail extends StatelessWidget{
+class RegisterEmail extends StatelessWidget{
 
   UserBloc userBloc;
   SnackbarError errorMessage = SnackbarError();
