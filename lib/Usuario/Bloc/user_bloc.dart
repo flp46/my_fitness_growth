@@ -10,6 +10,10 @@ class UserBloc implements Bloc{
   Future register(email, pass) => _firebaseAuthRepository.registerFirebase(email, pass);
   //Con este metodo logeo con email y contraseña
   Future<AuthResult> login(email, pass) => _firebaseAuthRepository.loginFirebase(email, pass);
+  //Con este metodo logeo con la cuenta de google
+  Future loginWithGoogle() => _firebaseAuthRepository.loginWithGoogleFirebase();
+  //Con este metodo logeo con la cuenta de facebook
+  Future loginWithFacebook() => _firebaseAuthRepository.loginWithFacebookFirebase();
   //Creo el observable que va a monitorear el cambio de estado
   Stream<FirebaseUser> getStatus = FirebaseAuth.instance.onAuthStateChanged;
   //Consulto el estado de ese observable

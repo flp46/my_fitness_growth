@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:my_fitness_growth/UI/widgets/email_pass.dart';
+import 'package:my_fitness_growth/UI/widgets/facebook_button.dart';
+import 'package:my_fitness_growth/UI/widgets/google_button.dart';
 import 'package:my_fitness_growth/UI/widgets/logo.dart';
 import 'package:my_fitness_growth/Usuario/Bloc/user_bloc.dart';
 
@@ -52,12 +54,18 @@ class _LoginScreen extends State<LoginScreen>{
             children: <Widget>[
               MainLogo(),
               LoginEmail(),
-              RaisedButton(onPressed: (){
-                userBloc.register('alarcon4@gmail.com', '12345678');
-              }),
-              RaisedButton(onPressed: (){
-                userBloc.login('alarcon2@gmail.com', '12345678');
-              })
+              FacebookButton(),
+              GoogleButton()
+              // RaisedButton(
+              //   onPressed: (){
+              //     userBloc.loginWithGoogle().then((FirebaseUser user){
+              //       print(user);
+              //     }).catchError((onError){
+              //       print('ups falle');
+              //     });
+              //   },
+              //   child: Text('Google') 
+              // )
             ]
           ),
         ), 
