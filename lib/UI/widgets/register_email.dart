@@ -86,8 +86,12 @@ class RegisterEmail extends StatelessWidget{
                     }
                   )
                 ],
-              ),  
+              ), 
+              Container(
+                height: 20,
+              ), 
               RaisedButton(
+                color: Colors.white,
                 onPressed: (){
                   if (showHide.isPressed == true){
                     showHide.changeBinaryButton();

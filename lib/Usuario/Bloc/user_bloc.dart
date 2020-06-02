@@ -9,7 +9,7 @@ class UserBloc implements Bloc{
   //Con este metodo registro con email y contraseña
   Future register(email, pass) => _firebaseAuthRepository.registerFirebase(email, pass);
   //Con este metodo logeo con email y contraseña
-  Future<AuthResult> login(email, pass) => _firebaseAuthRepository.loginFirebase(email, pass);
+  Future login(email, pass) => _firebaseAuthRepository.loginFirebase(email, pass);
   //Con este metodo logeo con la cuenta de google
   Future loginWithGoogle() => _firebaseAuthRepository.loginWithGoogleFirebase();
   //Con este metodo logeo con la cuenta de facebook

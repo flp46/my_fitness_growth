@@ -15,12 +15,12 @@ class FirebaseAuthAPI{
     } catch(e) {
       print(e);
       switch (e.code) {
-        case 'ERROR_INVALID_EM4.5.1AIL':
+        case 'ERROR_INVALID_EMAIL':
           String friendlyMessage = 'Parace que tu correo no esta bien escrito';
           return friendlyMessage;
         case 'ERROR_EMAIL_ALREADY_IN_USE':
           String friendlyMessage = 'Este correo ya esta registrado, inicia sesion';
-          return friendlyMessage;          
+          return friendlyMessage;
         default:
           String friendlyMessage = 'Ups, tuvimos un error, revisa los datos nuevamente';
           return friendlyMessage;           
@@ -29,8 +29,29 @@ class FirebaseAuthAPI{
     final userData = await _auth.currentUser();
   }
 
-  Future<AuthResult> loginWithCredentials(String email, String pass) async {
+  Future loginWithCredentials(String email, String pass) async {
+    try {
     final login = await _auth.signInWithEmailAndPassword(email: email, password: pass);
+    } catch(e) {
+      print(e);
+      switch (e.code) {
+        case 'ERROR_INVALID_EMAIL':
+          String friendlyMessage = 'Parace que tu correo no esta bien escrito';
+          return friendlyMessage;
+        case 'ERROR_EMAIL_ALREADY_IN_USE':
+          String friendlyMessage = 'Este correo ya esta registrado, inicia sesion';
+          return friendlyMessage; 
+        case 'ERROR_USER_NOT_FOUND':
+          String friendlyMessage = 'No tenemos una cuenta con este correo, ¡Registrate!';
+          return friendlyMessage; 
+        case 'ERROR_WRONG_PASSWORD':
+          String friendlyMessage = 'La contraseña es incorrecta, o creaste tu cuenta con Facebook o Google';
+          return friendlyMessage;                   
+        default:
+          String friendlyMessage = 'Ups, tuvimos un error, revisa los datos nuevamente';
+          return friendlyMessage;           
+      }
+    }
     final userData = await _auth.currentUser();
   }
 

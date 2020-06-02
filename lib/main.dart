@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:my_fitness_growth/UI/screens/login.dart';
+import 'package:my_fitness_growth/UI/screens/register_screen.dart';
 import 'package:my_fitness_growth/Usuario/Bloc/user_bloc.dart';
 
 void main() {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           // closer together (more dense) than on mobile platforms.
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: LoginScreen(),
+        home: RegisterScreen(),
       )
     ); 
   }

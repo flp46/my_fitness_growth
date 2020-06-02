@@ -29,9 +29,10 @@ class GoogleButton extends StatelessWidget{
     userBloc = BlocProvider.of(context);
 
     // TODO: implement build
-    return FloatingActionButton(
-      backgroundColor: Color(0xFF4285F4),
-      child: FaIcon(FontAwesomeIcons.google),
+    return RaisedButton(
+      color: Color(0xFF4285F4),
+      textColor: Colors.white,
+      child: Text('Continua con Google'),
       onPressed: (){
         if (controlButton.isPressed == true){
           controlButton.changeBinaryButton();

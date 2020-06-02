@@ -31,9 +31,10 @@ class FacebookButton extends StatelessWidget{
     userBloc = BlocProvider.of(context);
 
     // TODO: implement build
-    return FloatingActionButton(
-      backgroundColor: Color(0xFF3b5998),
-      child: FaIcon(FontAwesomeIcons.facebookF),
+    return RaisedButton(
+      color: Color(0xFF3b5998),
+      textColor: Colors.white,
+      child: Text('Continua con Facebook'),
       onPressed: (){
         if (controlButton.isPressed == true){
           controlButton.changeBinaryButton();

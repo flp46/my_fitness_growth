@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:my_fitness_growth/UI/widgets/facebook_button.dart';
 import 'package:my_fitness_growth/UI/widgets/google_button.dart';
+import 'package:my_fitness_growth/UI/widgets/login_email.dart';
 import 'package:my_fitness_growth/UI/widgets/logo.dart';
 import 'package:my_fitness_growth/UI/widgets/register_email.dart';
 import 'package:my_fitness_growth/Usuario/Bloc/user_bloc.dart';
 
-class LoginScreen extends StatefulWidget{
+class RegisterScreen extends StatefulWidget{
   @override
-  State<StatefulWidget> createState() => _LoginScreen() ;
+  State<StatefulWidget> createState() => _RegisterScreen() ;
   
   
 }
 
-class _LoginScreen extends State<LoginScreen>{
+class _RegisterScreen extends State<RegisterScreen>{
 
   UserBloc userBloc;
 
@@ -54,14 +55,9 @@ class _LoginScreen extends State<LoginScreen>{
             children: <Widget>[
               MainLogo(),
               RegisterEmail(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  FacebookButton(),
-                  Container(width: 20),
-                  GoogleButton()
-                ],
-              ),
+              FacebookButton(),
+              GoogleButton(),
+              LoginEmail()
             ]
           ),
         ), 
