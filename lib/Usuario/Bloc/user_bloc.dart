@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:my_fitness_growth/Musculo/Repository/firestore_muscle_repository.dart';
 import 'package:my_fitness_growth/Usuario/Repository/firebase_auth_repository.dart';
 
 class UserBloc implements Bloc{
@@ -18,6 +19,13 @@ class UserBloc implements Bloc{
   Stream<FirebaseUser> getStatus = FirebaseAuth.instance.onAuthStateChanged;
   //Consulto el estado de ese observable
   Stream<FirebaseUser> get isLogin => getStatus;
+
+
+
+
+  final firestoreMusclesRepository = FirestoreMusclesRepository();
+
+  Future getMusclesList() => firestoreMusclesRepository.getMusclesListFirestore();
 
   @override
   void dispose() {

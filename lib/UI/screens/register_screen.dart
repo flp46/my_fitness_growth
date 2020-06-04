@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:my_fitness_growth/Musculo/UI/screens/muscle_home.dart';
 import 'package:my_fitness_growth/UI/widgets/facebook_button.dart';
 import 'package:my_fitness_growth/UI/widgets/google_button.dart';
 import 'package:my_fitness_growth/UI/widgets/login_email.dart';
@@ -33,9 +34,7 @@ class _RegisterScreen extends State<RegisterScreen>{
       stream: userBloc.isLogin,
       builder: (BuildContext context, AsyncSnapshot snapshot){
         if (snapshot.hasData){
-          return Container(
-            color: Colors.brown,
-          );
+          return MuscleHome();
         } else {
           return registerForm();
         }
