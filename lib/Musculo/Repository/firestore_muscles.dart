@@ -12,6 +12,15 @@ class FirestoreMusclesAPI {
     print(muscleList.id);
     QuerySnapshot muscleData = await muscleList.getDocuments();
     print(muscleData.documents);
+
+    muscleData.documents.forEach((documet){
+      String idDocument = documet.documentID;
+      String documentData = documet.data['nombre'];
+      print(documentData);
+      print(documet.documentID);
+      print(documet);
+     });
+
   }
 
 }

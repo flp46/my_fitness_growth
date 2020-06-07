@@ -5,6 +5,7 @@ import 'package:my_fitness_growth/Usuario/Repository/firebase_auth_repository.da
 
 class UserBloc implements Bloc{
 
+  // USER BLOC
   final _firebaseAuthRepository = FirebaseAuthRepository();
 
   //Con este metodo registro con email y contraseña
@@ -22,7 +23,7 @@ class UserBloc implements Bloc{
 
 
 
-
+  //MUSCLE BLOC
   final firestoreMusclesRepository = FirestoreMusclesRepository();
 
   Future getMusclesList() => firestoreMusclesRepository.getMusclesListFirestore();
