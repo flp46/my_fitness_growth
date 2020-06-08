@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:my_fitness_growth/Musculo/Repository/firestore_muscle_repository.dart';
 import 'package:my_fitness_growth/Usuario/Repository/firebase_auth_repository.dart';
@@ -26,7 +28,11 @@ class UserBloc implements Bloc{
   //MUSCLE BLOC
   final firestoreMusclesRepository = FirestoreMusclesRepository();
 
-  Future getMusclesList() => firestoreMusclesRepository.getMusclesListFirestore();
+  Stream<QuerySnapshot> muscleList() => firestoreMusclesRepository.muscleListFirestore();
+  Stream<QuerySnapshot> get muscleListStream => muscleList();
+  GridView buildGridWithMuscle(List<DocumentSnapshot> muscleDocuments) => firestoreMusclesRepository.buildGridWithMuscleFirestore(muscleDocuments);
+  // Future getMusclesList() => firestoreMusclesRepository.getMusclesListFirestore();
+  // get getMuscleListStream => getMusclesList();
 
   @override
   void dispose() {

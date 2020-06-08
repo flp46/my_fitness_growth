@@ -1,4 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:my_fitness_growth/Musculo/UI/widgets/muscle_card.dart';
+import 'package:my_fitness_growth/Musculo/UI/widgets/muscle_list.dart';
 
 class FirestoreMusclesAPI {
 
@@ -6,21 +9,22 @@ class FirestoreMusclesAPI {
 
   final firestore = Firestore.instance;
 
+  Stream<QuerySnapshot> muscleList() => firestore.collection(MUSCULOS).snapshots();
 
-  Future getMusclesList() async{
-    CollectionReference muscleList = await firestore.collection(MUSCULOS);
-    print(muscleList.id);
-    QuerySnapshot muscleData = await muscleList.getDocuments();
-    print(muscleData.documents);
+  GridView buildGridWithMuscle(List<DocumentSnapshot> muscleDocuments){
+    List<MuscleCard> muscleCardFromFirestore = List<MuscleCard>();
 
-    muscleData.documents.forEach((documet){
-      String idDocument = documet.documentID;
-      String documentData = documet.data['nombre'];
-      print(documentData);
-      print(documet.documentID);
-      print(documet);
-     });
 
+    muscleDocuments.forEach((document) {
+      muscleCardFromFirestore.add(MuscleCard(
+        imageUrl: document.data['imagenUrl'],
+        nombre: document.data['nombre']
+      ));
+    });
+
+    return GridView.count(
+      crossAxisCount: 2,
+      children: List.from(muscleCardFromFirestore)
+    );   
   }
-
 }

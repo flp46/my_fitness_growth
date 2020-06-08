@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:my_fitness_growth/Musculo/UI/widgets/muscle_card.dart';
 
-class MuscleList{
+class GridWithMuscle extends StatelessWidget{
 
+  final List<MuscleCard> muscleList;
+
+  GridWithMuscle({Key key, this.muscleList});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return GridView.count(
+      crossAxisCount: 2,
+      children: List.from(muscleList)
+    );
+  }
   
-  List<MuscleCard> muscleList = [
-    MuscleCard(nombre: 'Pecho', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-    MuscleCard(nombre: 'Brazo', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',)
-  ];
 }

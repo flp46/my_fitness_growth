@@ -7,8 +7,6 @@ import 'package:my_fitness_growth/Usuario/Bloc/user_bloc.dart';
 
 class MuscleHome extends StatelessWidget{
 
-  final muscleList = MuscleList();
-
   UserBloc userBloc;
 
   @override
@@ -20,23 +18,24 @@ class MuscleHome extends StatelessWidget{
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(),
-      body: GridView.count(
-        crossAxisCount: 2,
-        children: List.from(muscleList.muscleList),
-        // <Widget>[
-        //   MuscleCard(nombre: 'Pecho', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-        //   MuscleCard(nombre: 'Espalda', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-        //   MuscleCard(nombre: 'Hombro', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-        //   MuscleCard(nombre: 'Biceps', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-        //   MuscleCard(nombre: 'Triceps', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-        //   MuscleCard(nombre: 'Pierna', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-        //   MuscleCard(nombre: 'Pecho', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-        //   MuscleCard(nombre: 'Espalda', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-        //   MuscleCard(nombre: 'Hombro', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-        //   MuscleCard(nombre: 'Biceps', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-        //   MuscleCard(nombre: 'Triceps', imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/perfect-male-torso-royalty-free-image-508886067-1559729968.jpg',),
-
-        // ],
+      body: StreamBuilder(
+        stream: userBloc.muscleListStream,
+        builder: (BuildContext context, AsyncSnapshot snapshot){
+          switch (snapshot.connectionState){
+            case ConnectionState.none:
+              print('Entre al none');
+              return CircularProgressIndicator();
+            case ConnectionState.waiting:
+              print('Entre al waiting');
+              return CircularProgressIndicator();
+            case ConnectionState.active:
+              print('Entre al active');
+              return userBloc.buildGridWithMuscle(snapshot.data.documents);
+            case ConnectionState.done:
+              print('Entre al done');
+              return userBloc.buildGridWithMuscle(snapshot.data.documents);
+          } 
+        }
       )
     );
   }
