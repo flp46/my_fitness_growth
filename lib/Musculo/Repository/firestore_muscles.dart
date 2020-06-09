@@ -18,7 +18,8 @@ class FirestoreMusclesAPI {
     muscleDocuments.forEach((document) {
       muscleCardFromFirestore.add(MuscleCard(
         imageUrl: document.data['imagenUrl'],
-        nombre: document.data['nombre']
+        nombre: document.data['nombre'],
+        uidMuscle: document.documentID,
       ));
     });
 
