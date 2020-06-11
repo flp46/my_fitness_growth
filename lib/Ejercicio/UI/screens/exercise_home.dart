@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:my_fitness_growth/Musculo/UI/widgets/muscle_card.dart';
-import 'package:my_fitness_growth/Musculo/UI/widgets/muscle_list.dart';
 import 'package:my_fitness_growth/Usuario/Bloc/user_bloc.dart';
 
-
-class MuscleHome extends StatelessWidget{
+class ExerciseHome extends StatelessWidget{
 
   UserBloc userBloc;
+  String uidMuscle;
+
+  ExerciseHome({Key key, this.uidMuscle});
 
   @override
   Widget build(BuildContext context) {
 
     userBloc = BlocProvider.of(context);
 
-
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(title: Text('Musculos'),),
+      appBar: AppBar(title: Text('Lista de ejercicios')),
       body: StreamBuilder(
-        stream: userBloc.muscleListStream,
+        stream: userBloc.getExerciseByMuscle(uidMuscle),
         builder: (BuildContext context, AsyncSnapshot snapshot){
           switch (snapshot.connectionState){
             case ConnectionState.none:
@@ -29,12 +28,13 @@ class MuscleHome extends StatelessWidget{
               print('Entre al waiting');
               return CircularProgressIndicator();
             case ConnectionState.active:
-              print('Entre al active');
-              return userBloc.buildGridWithMuscle(snapshot.data.documents);
+              print('Entre al active de exercises');
+              print(snapshot.data.documents);
+              return userBloc.buildListViewWitheExercises(snapshot.data.documents);
             case ConnectionState.done:
-              print('Entre al done');
-              return userBloc.buildGridWithMuscle(snapshot.data.documents);
-          } 
+              print('Entre al active');
+              return userBloc.buildListViewWitheExercises(snapshot.data.documents);
+          }
         }
       )
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_fitness_growth/Ejercicio/UI/screens/exercise_home.dart';
 import 'package:my_fitness_growth/Ejercicio/UI/widgets/exercise_list.dart';
 
 class MuscleCard extends StatelessWidget{
@@ -20,7 +21,7 @@ class MuscleCard extends StatelessWidget{
       onTap: () {
         print(uidMuscle);
         Navigator.push(context, MaterialPageRoute(
-          builder: (BuildContext context) => ListViewWithExercise())
+          builder: (BuildContext context) => ExerciseHome(uidMuscle: uidMuscle))
         );
       },
       child: Card(
