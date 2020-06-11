@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_fitness_growth/Ejercicio/UI/widgets/exercise_details.dart';
 
 class ExerciseCard extends StatelessWidget{
 
@@ -14,6 +15,15 @@ class ExerciseCard extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return ListTile(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(
+          builder: (BuildContext context) => ExerciseDetails(
+            imageUrl: imagenUrl,
+            name: nombre,
+            description: description,
+          ))
+        );
+      },
       leading: Image.network(imagenUrl),
       title: Text(nombre),
       subtitle: RichText(
