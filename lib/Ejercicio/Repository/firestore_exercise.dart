@@ -21,6 +21,7 @@ class FirestoreExerciseAPI{
           imagenUrl: document.data['imagenUrl'],
           nombre: document.data['nombre'],
           description: document.data['descripcion'],
+          tips: document.data['tips']
         ),
       ));
     });

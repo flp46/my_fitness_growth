@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:my_fitness_growth/UI/screens/register_screen.dart';
 import 'package:my_fitness_growth/Usuario/Bloc/user_bloc.dart';
+import 'package:my_fitness_growth/Usuario/UI/screens/profile_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,6 +15,11 @@ class MyApp extends StatelessWidget {
     return BlocProvider( 
       bloc: UserBloc(),
       child: MaterialApp(
+        initialRoute: '/',
+        routes: {
+          '/': (context) => RegisterScreen(),
+          '/profile': (context) => ProfileScreen(),
+        },
         title: 'Flutter Demo',
         theme: ThemeData(
           // This is the theme of your application.
@@ -31,7 +37,7 @@ class MyApp extends StatelessWidget {
           // closer together (more dense) than on mobile platforms.
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: RegisterScreen(),
+        // home: RegisterScreen(),
       )
     ); 
   }

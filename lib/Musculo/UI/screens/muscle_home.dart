@@ -17,17 +17,22 @@ class MuscleHome extends StatelessWidget{
 
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(title: Text('Musculos'),),
+      appBar: AppBar(
+        title: Center(child: Text('Musculos')),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.account_circle), onPressed: () => Navigator.pushNamed(context, '/profile'))
+        ],
+      ),
       body: StreamBuilder(
         stream: userBloc.muscleListStream,
         builder: (BuildContext context, AsyncSnapshot snapshot){
           switch (snapshot.connectionState){
             case ConnectionState.none:
               print('Entre al none');
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             case ConnectionState.waiting:
               print('Entre al waiting');
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             case ConnectionState.active:
               print('Entre al active');
               return userBloc.buildGridWithMuscle(snapshot.data.documents);

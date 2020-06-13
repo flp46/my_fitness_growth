@@ -28,6 +28,7 @@ class LoginScreenFull extends StatelessWidget{
       animation: showHide,
       builder: (_, __) => Scaffold(
         appBar: AppBar(
+          leading: IconButton(icon: Icon(Icons.keyboard_arrow_left) , onPressed: () => Navigator.pop(context)),
           backgroundColor: Color(0xFFfbb23c)
         ),
         body: Builder(builder: (context) => Container(

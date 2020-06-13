@@ -16,17 +16,20 @@ class ExerciseHome extends StatelessWidget{
 
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(title: Text('Lista de ejercicios')),
+      appBar: AppBar(
+        leading: IconButton(icon: Icon(Icons.keyboard_arrow_left) , onPressed: () => Navigator.pop(context)),
+        title: Text('Lista de ejercicios')
+      ),
       body: StreamBuilder(
         stream: userBloc.getExerciseByMuscle(uidMuscle),
         builder: (BuildContext context, AsyncSnapshot snapshot){
           switch (snapshot.connectionState){
             case ConnectionState.none:
               print('Entre al none');
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             case ConnectionState.waiting:
               print('Entre al waiting');
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             case ConnectionState.active:
               print('Entre al active de exercises');
               print(snapshot.data.documents);

@@ -9,7 +9,8 @@ class ExerciseCard extends StatelessWidget{
   final String imagenUrl;
   final String nombre;
   final String description;
-  ExerciseCard({Key key, this.imagenUrl, this.nombre, this.description});
+  final List<dynamic> tips;
+  ExerciseCard({Key key, this.imagenUrl, this.nombre, this.description, this.tips});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class ExerciseCard extends StatelessWidget{
             imageUrl: imagenUrl,
             name: nombre,
             description: description,
+            tips: tips
           ))
         );
       },
