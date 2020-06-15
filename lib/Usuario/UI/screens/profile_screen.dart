@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_fitness_growth/Usuario/UI/widgets/popup_menu_profile.dart';
 
 class ProfileScreen extends StatelessWidget{
   @override
@@ -9,7 +10,14 @@ class ProfileScreen extends StatelessWidget{
         title: Text('Tu perfil'),
         leading: IconButton(icon: Icon(Icons.keyboard_arrow_left) , onPressed: () => Navigator.pop(context)),
         actions: <Widget>[
-          Icon(Icons.more_vert)        
+          PopupMenu(
+            dataList: ['hola', 'como'],
+            callbackList: [
+              () => print('hola entre bien'), 
+              () => print('Entre fue re bien')
+            ],
+          )
+          // Icon(Icons.more_vert)        
         ]
       ),
       body: Center(
