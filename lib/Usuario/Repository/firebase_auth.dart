@@ -95,6 +95,10 @@ class FirebaseAuthAPI{
     }
   }
 
+  Future signOutUser() async {
+    await _auth.signOut();
+  }
+
 
    
 }

@@ -15,7 +15,10 @@ class PopupMenu extends StatelessWidget{
       itemBuilder: (BuildContext context){
         return dataList.map((String opcios){
           return PopupMenuItem<String>(
-            child: Text(opcios),
+            child: ListTile(
+              leading: Icon(Icons.input),
+              title: Text(opcios),
+            ),
             value: opcios,
           );
         }).toList();
@@ -27,7 +30,12 @@ class PopupMenu extends StatelessWidget{
     if(value == dataList[0]){
       callbackList[0].call();
     } else {
-      callbackList[1].call();
+      if (callbackList.length >= 2){
+        print(callbackList.length);
+        callbackList[1].call();
+      } else {
+        print('no tengo funcion para la opcion 2');
+      }
     }
   }
 

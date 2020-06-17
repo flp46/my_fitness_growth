@@ -24,6 +24,8 @@ class UserBloc implements Bloc{
   Stream<FirebaseUser> getStatus = FirebaseAuth.instance.onAuthStateChanged;
   //Consulto el estado de ese observable
   Stream<FirebaseUser> get isLogin => getStatus;
+  //Con este metodo cierro la sesion que tenga iniciada en la instancia
+  Future signOutUser() => _firebaseAuthRepository.signOutUserFirebase();
 
 
 
@@ -37,11 +39,13 @@ class UserBloc implements Bloc{
   GridView buildGridWithMuscle(List<DocumentSnapshot> muscleDocuments) => firestoreMusclesRepository.buildGridWithMuscleFirestore(muscleDocuments);
 
 
+  
   //EXERCISE BLOC
   final firestoreExerciseRepository = FirestoreExerciseRepository();
 
+  //Stream que monitorea el Stream de ejercicios segun el uid de un musculo que recibe por parametro
   Stream<QuerySnapshot> getExerciseByMuscle(String uidMuscle) => firestoreExerciseRepository.getExerciseByMuscleFirestore(uidMuscle);
-  // Stream<QuerySnapshot> get getExerciseByMuscleStream => getExerciseByMuscle(uidMuscle);
+  //Metodo que construye el ListView a partir de una Lista de documentos que le pasa Stream de arriba
   ListViewWithExercise buildListViewWitheExercises(List<DocumentSnapshot> exerciseDocuments) => firestoreExerciseRepository.buildListViewWitheExercises(exerciseDocuments);
 
   @override
