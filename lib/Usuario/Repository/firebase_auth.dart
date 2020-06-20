@@ -99,6 +99,10 @@ class FirebaseAuthAPI{
     await _auth.signOut();
   }
 
+  Future<String> getCurrentUser() async {
+    final userData = await _auth.currentUser();
+    return userData.uid;
+  }
 
    
 }

@@ -26,6 +26,8 @@ class UserBloc implements Bloc{
   Stream<FirebaseUser> get isLogin => getStatus;
   //Con este metodo cierro la sesion que tenga iniciada en la instancia
   Future signOutUser() => _firebaseAuthRepository.signOutUserFirebase();
+  //Obtener los datos del usuario actual. Retorna el FirebaseUser
+  Future<String> getCurrentUser() => _firebaseAuthRepository.getCurrentUserFirebase();
 
 
 
@@ -47,6 +49,9 @@ class UserBloc implements Bloc{
   Stream<QuerySnapshot> getExerciseByMuscle(String uidMuscle) => firestoreExerciseRepository.getExerciseByMuscleFirestore(uidMuscle);
   //Metodo que construye el ListView a partir de una Lista de documentos que le pasa Stream de arriba
   ListViewWithExercise buildListViewWitheExercises(List<DocumentSnapshot> exerciseDocuments) => firestoreExerciseRepository.buildListViewWitheExercises(exerciseDocuments);
+
+  Future addUserForAnExercise(String uidExercise, uidUser) => firestoreExerciseRepository.addUserForAnExerciseFirestore(uidExercise, uidUser);
+
 
   @override
   void dispose() {

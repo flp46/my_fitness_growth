@@ -9,15 +9,18 @@ class FirestoreExerciseAPI{
 
   final firestore = Firestore.instance;
 
+  //Stream que monitorea TODOS los ejercicios
   Stream<QuerySnapshot> getExerciseByMuscle(String uidMuscle) => firestore.collection(EXERCISE)
   .where('musculo', isEqualTo: firestore.document('Musculos/$uidMuscle')).snapshots();
 
+  //Construye el ListView con los ejercicios que corresponden al musculo
   ListViewWithExercise buildListViewWitheExercises(List<DocumentSnapshot> exerciseDocuments){
     List<Card> exerciseCardFromFirestore = List<Card>();
     print('exerciseDocuments[0]');
     exerciseDocuments.forEach((document) { 
       exerciseCardFromFirestore.add(Card(
         child: ExerciseCard(
+          uid: document.documentID,
           imagenUrl: document.data['imagenUrl'],
           nombre: document.data['nombre'],
           description: document.data['descripcion'],
@@ -30,6 +33,15 @@ class FirestoreExerciseAPI{
 
     return ListViewWithExercise(exerciseList: exerciseCardFromFirestore,);
 
+  }
+
+  Future addUserForAnExercise(String uidExercise,String uidUser){
+    print('sirvio el click');
+    firestore.collection(EXERCISE).document(uidExercise)
+    .updateData({
+      'userOwner': FieldValue.arrayUnion([uidUser]),
+    });
+    print('termine el add');
   }
 
 }

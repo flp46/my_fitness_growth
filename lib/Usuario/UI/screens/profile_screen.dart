@@ -31,7 +31,11 @@ class ProfileScreen extends StatelessWidget{
         ]
       ),
       body: Center(
-        child: Text('Estoy en el prefil. En el centro')
+        child: RaisedButton(
+          onPressed: (){
+            
+          }
+        )
       )
     );
   }

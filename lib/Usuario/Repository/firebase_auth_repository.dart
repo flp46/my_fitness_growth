@@ -10,4 +10,5 @@ class FirebaseAuthRepository{
   Future loginWithGoogleFirebase() =>_firebaseAuthAPI.loginWithGoogle();
   Future loginWithFacebookFirebase() => _firebaseAuthAPI.loginWithFacebook();
   Future signOutUserFirebase() => _firebaseAuthAPI.signOutUser();
+  Future<String> getCurrentUserFirebase() => _firebaseAuthAPI.getCurrentUser();
 }

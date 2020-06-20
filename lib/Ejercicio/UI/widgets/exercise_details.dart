@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:my_fitness_growth/Ejercicio/UI/widgets/exercise_fab_notifier.dart';
+import 'package:my_fitness_growth/Usuario/Bloc/user_bloc.dart';
+
 
 class ExerciseDetails extends StatelessWidget{
 
+  String uid;
   String imageUrl;
   String name;
   String description;
   List<dynamic> tips;
 
-  ExerciseDetails({Key key, this.imageUrl, this.name, this.description, this.tips});
+  ExerciseDetails({Key key, this. uid, this.imageUrl, this.name, this.description, this.tips});
 
+  UserBloc userBloc;
+  final controlButton = ControlIconFAB();
 
   @override
   Widget build(BuildContext context) {
 
     double screenWidth = MediaQuery.of(context).size.width; 
+    userBloc = BlocProvider.of(context);
 
     // TODO: implement build
     return Scaffold(
@@ -28,8 +36,19 @@ class ExerciseDetails extends StatelessWidget{
           drawImage(imageUrl),
           drawTitle(name),
           drawDescription(description),
-          // ExerciseTipsList(),
-          drawTips(tips, screenWidth)
+          drawTips(tips, screenWidth),
+          Center(
+            child: AnimatedBuilder(
+            animation: controlButton,
+            builder: (_, __) => FloatingActionButton(
+              child: controlButton.isFaved ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+              onPressed: () async {
+                controlButton.clickedButton();
+                final String userUid =  await userBloc.getCurrentUser();
+                userBloc.addUserForAnExercise(uid, userUid);
+              }),
+            ),
+          ),
         ]
       ),
     );
