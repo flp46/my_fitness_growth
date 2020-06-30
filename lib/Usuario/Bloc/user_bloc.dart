@@ -6,6 +6,7 @@ import 'package:my_fitness_growth/Ejercicio/Repository/firestore_exercise_reposi
 import 'package:my_fitness_growth/Ejercicio/UI/widgets/exercise_list.dart';
 import 'package:my_fitness_growth/Musculo/Repository/firestore_muscle_repository.dart';
 import 'package:my_fitness_growth/Usuario/Repository/firebase_auth_repository.dart';
+import 'package:my_fitness_growth/Usuario/Repository/firestore_my_training_repository.dart';
 
 class UserBloc implements Bloc{
 
@@ -49,8 +50,15 @@ class UserBloc implements Bloc{
   Stream<QuerySnapshot> getExerciseByMuscle(String uidMuscle) => firestoreExerciseRepository.getExerciseByMuscleFirestore(uidMuscle);
   //Metodo que construye el ListView a partir de una Lista de documentos que le pasa Stream de arriba
   ListViewWithExercise buildListViewWitheExercises(List<DocumentSnapshot> exerciseDocuments) => firestoreExerciseRepository.buildListViewWitheExercises(exerciseDocuments);
-
+  //Agrego el uid del usuario en el field userOwner del documento ejericico
   Future addUserForAnExercise(String uidExercise, uidUser) => firestoreExerciseRepository.addUserForAnExerciseFirestore(uidExercise, uidUser);
+
+
+
+  //MITRAINING BLOC
+  final firestoreMyTrainingRepository = FirestoreMyTrainingRepository();
+
+  Future getExerciseByUser(String userUid) => firestoreMyTrainingRepository.getExerciseByUserFirestore(userUid);
 
 
   @override

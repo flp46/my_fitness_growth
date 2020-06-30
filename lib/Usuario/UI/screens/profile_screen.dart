@@ -33,7 +33,7 @@ class ProfileScreen extends StatelessWidget{
       body: Center(
         child: RaisedButton(
           onPressed: (){
-            
+            userBloc.getExerciseByUser('LPiPARbq74fnHIMgNMCGhM39qch2');
           }
         )
       )
