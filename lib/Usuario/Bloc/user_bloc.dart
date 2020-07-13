@@ -55,11 +55,11 @@ class UserBloc implements Bloc{
 
 
 
-  //MITRAINING BLOC
+  //MYTRAINING BLOC
   final firestoreMyTrainingRepository = FirestoreMyTrainingRepository();
 
-  Future getExerciseByUser(String userUid) => firestoreMyTrainingRepository.getExerciseByUserFirestore(userUid);
-
+  Stream<QuerySnapshot> getExerciseByUser(String userUid) => firestoreMyTrainingRepository.getExerciseByUserFirestore(userUid);
+  ListViewWithExercise buildListViewWitheMyTraining(List<DocumentSnapshot> exerciseDocuments) => firestoreMyTrainingRepository.buildListViewWitheMyTrainingFirestore(exerciseDocuments);
 
   @override
   void dispose() {
