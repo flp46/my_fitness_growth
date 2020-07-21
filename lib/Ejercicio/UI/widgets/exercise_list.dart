@@ -11,6 +11,7 @@ class ListViewWithExercise extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return ListView(
+      shrinkWrap: true,
       children: List.from(exerciseList),
     );
   }
