@@ -8,8 +8,15 @@ class FirestoreMiTrainingAPI{
   final firestore = Firestore.instance;
   final EXERCISE = 'Ejercicios';
 
+  //Stream que obtiene todos los ejercicio sin importar el musculo del usuario
   Stream<QuerySnapshot> getExerciseByUser(String userUid) => firestore.collection(EXERCISE)
     .where('userOwner', arrayContains: userUid).snapshots();
+
+  //Stream que obtiene los ejercicios del usuario, segun el musculo que escoja
+  Stream<QuerySnapshot> getExerciseForUserByMuscle(String userUid, String muscleUid) => firestore.collection(EXERCISE)
+    .where('userOwner', arrayContains: userUid).where('musculo', isEqualTo: firestore.document('Musculos/$muscleUid'))
+    .snapshots();
+  
 
   //   exercise.forEach((document) {
   //     final ejercicio = document.documents;

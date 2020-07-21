@@ -8,5 +8,7 @@ class FirestoreMyTrainingRepository{
 
   Stream<QuerySnapshot> getExerciseByUserFirestore(String userUid) => firestoreMyTrainingAPI.getExerciseByUser(userUid);
   ListViewWithExercise buildListViewWitheMyTrainingFirestore(List<DocumentSnapshot> exerciseDocuments) => firestoreMyTrainingAPI.buildListViewWitheMyTraining(exerciseDocuments);
+  Stream<QuerySnapshot> getExerciseForUserByMuscleFirestore(String userUid, String muscleUid) => firestoreMyTrainingAPI.getExerciseForUserByMuscle(userUid, muscleUid);
+ 
 
 }

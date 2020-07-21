@@ -60,6 +60,7 @@ class UserBloc implements Bloc{
 
   Stream<QuerySnapshot> getExerciseByUser(String userUid) => firestoreMyTrainingRepository.getExerciseByUserFirestore(userUid);
   ListViewWithExercise buildListViewWitheMyTraining(List<DocumentSnapshot> exerciseDocuments) => firestoreMyTrainingRepository.buildListViewWitheMyTrainingFirestore(exerciseDocuments);
+  Stream<QuerySnapshot> getExerciseForUserByMuscle(String userUid, String muscleUid) => firestoreMyTrainingRepository.getExerciseForUserByMuscleFirestore(userUid, muscleUid);
 
   @override
   void dispose() {
