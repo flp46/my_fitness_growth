@@ -40,6 +40,8 @@ class UserBloc implements Bloc{
   Stream<QuerySnapshot> get muscleListStream => muscleList();
   //UI que se construye cuando identifica un cambio en el Stream de arriba
   GridView buildGridWithMuscle(List<DocumentSnapshot> muscleDocuments) => firestoreMusclesRepository.buildGridWithMuscleFirestore(muscleDocuments);
+  //Futuro que consulta musculos en la base 
+  Future<List<DocumentSnapshot>> getMuscleList() => firestoreMusclesRepository.getMuscleListFirestore();
 
 
   

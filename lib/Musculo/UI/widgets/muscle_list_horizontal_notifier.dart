@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MuscleListHorizontal extends ChangeNotifier {
+
+class MuscleListHorizontalNotifier extends ChangeNotifier {
   String muscleUid;
   bool muscleFiltred = false;
+  String muscleSelected;
 
-  void muscleSelected() {
+  void muscleWithFilter(String uidMuscle) {
+    muscleSelected = uidMuscle;
     muscleFiltred = true;
     notifyListeners();
   }
@@ -14,3 +17,5 @@ class MuscleListHorizontal extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+

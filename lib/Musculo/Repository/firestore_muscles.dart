@@ -14,7 +14,6 @@ class FirestoreMusclesAPI {
   GridView buildGridWithMuscle(List<DocumentSnapshot> muscleDocuments){
     List<MuscleCard> muscleCardFromFirestore = List<MuscleCard>();
 
-
     muscleDocuments.forEach((document) {
       muscleCardFromFirestore.add(MuscleCard(
         imageUrl: document.data['imagenUrl'],
@@ -27,5 +26,19 @@ class FirestoreMusclesAPI {
       crossAxisCount: 2,
       children: List.from(muscleCardFromFirestore)
     );   
+  }
+
+  Future<List<DocumentSnapshot>> getMuscleList() async {
+    List<DocumentSnapshot> document = List<DocumentSnapshot>();
+
+    final muscleDocuments = await firestore.collection(MUSCULOS).getDocuments()
+    .then((value) => {
+      value.documents.forEach((element) {
+        document.add(element);
+      })
+    });
+
+    return document;
+
   }
 }

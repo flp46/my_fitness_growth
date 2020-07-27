@@ -12,4 +12,7 @@ class FirestoreMusclesRepository{
   Stream<QuerySnapshot> muscleListFirestore() => firestoreMusclesAPI.muscleList();
 
   GridView buildGridWithMuscleFirestore(List<DocumentSnapshot> muscleDocuments) => firestoreMusclesAPI.buildGridWithMuscle(muscleDocuments);
+
+  Future<List<DocumentSnapshot>> getMuscleListFirestore() =>firestoreMusclesAPI.getMuscleList();
+
 }
