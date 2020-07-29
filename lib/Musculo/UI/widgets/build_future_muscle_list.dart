@@ -46,7 +46,7 @@ class BuildFutureMuscleList extends StatelessWidget {
         itemBuilder: (context, index) {
           DocumentSnapshot document = snapshot.data[index];
           return Container(
-            width: 500,
+            width: 200,
             child: RaisedButton(
               child: Text(document.data['nombre']),
               onPressed: () {

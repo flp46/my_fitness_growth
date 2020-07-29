@@ -38,7 +38,20 @@ class ProfileScreen extends StatelessWidget {
         ]
       ),
       body: Column(children: <Widget>[
-        BuildFutureMuscleList(instantiatedNotifier: notifier),
+        Row(children: <Widget>[
+          Container(
+            height: 50,
+            child: RaisedButton(
+              child: Text('Todos'),
+              onPressed: (){
+                notifier.muscleWithoutFilter();
+              } 
+            ),
+          ),
+          Expanded(
+            child: BuildFutureMuscleList(instantiatedNotifier: notifier)
+          ),
+        ]),
         AnimatedBuilder(
           animation: notifier,
           builder: (_, __) => StreamBuilder(
