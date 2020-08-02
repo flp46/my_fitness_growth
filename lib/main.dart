@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => RegisterScreen(),
-          '/profile': (context) => ProfileScreen(),
+          ProfileScreen.routeName: (context) => ProfileScreen() //RUTA CON ARGS: Declaracion de una ruta
+          //nombrada a la cual le voy a pasar parametros al llamarla
         },
         title: 'Flutter Demo',
         theme: ThemeData(

@@ -6,6 +6,7 @@ import 'package:my_fitness_growth/UI/widgets/logo.dart';
 import 'package:my_fitness_growth/UI/widgets/register_email.dart';
 import 'package:my_fitness_growth/UI/widgets/snackbar_error.dart';
 import 'package:my_fitness_growth/Usuario/Bloc/user_bloc.dart';
+import 'package:my_fitness_growth/test_screen.dart';
 
 class LoginScreenFull extends StatelessWidget{
 
@@ -109,7 +110,14 @@ class LoginScreenFull extends StatelessWidget{
                       child: showHide.isPressed ? Text('Iniciar Sesion') : CircularProgressIndicator(),
                     ),
                     FacebookButton(),
-                    GoogleButton()       
+                    GoogleButton(),
+                    RaisedButton(
+                      child: Text('Test Screen'),
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (BuildContext context) => TestScreen()));
+                      }
+                    )       
                   ],
                 )
               ),

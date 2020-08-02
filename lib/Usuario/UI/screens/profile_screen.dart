@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:my_fitness_growth/Musculo/Repository/firestore_muscles.dart';
+import 'package:my_fitness_growth/Musculo/UI/screens/muscle_home.dart';
 import 'package:my_fitness_growth/Musculo/UI/widgets/build_future_muscle_list.dart';
 import 'package:my_fitness_growth/Musculo/UI/widgets/muscle_list_horizontal_notifier.dart';
 import 'package:my_fitness_growth/Usuario/Bloc/user_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:my_fitness_growth/Usuario/UI/widgets/popup_menu_profile.dart';
 class ProfileScreen extends StatelessWidget {
   UserBloc userBloc;
   String muscleUid;
+  static const routeName = '/profile'; //RUTA CON ARGS: declaracion real de la ruta
 
   final notifier = MuscleListHorizontalNotifier();
 
@@ -17,8 +19,9 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     userBloc = BlocProvider.of(context);
+    final MuscleHome args = ModalRoute.of(context).settings.arguments; //RUTA CON ARGS: de esta forma extraigo los parametros que va a recibir mi ruta nombrada con parametros, del widget que me los entrega
 
-    // TODO: implement build
+    // TODO: implement buildcontext
     return Scaffold(
       appBar: AppBar(
         title: Text('Tu perfil'),
@@ -55,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
         AnimatedBuilder(
           animation: notifier,
           builder: (_, __) => StreamBuilder(
-            stream: notifier.muscleFiltred ? userBloc.getExerciseForUserByMuscle('LPiPARbq74fnHIMgNMCGhM39qch2', notifier.muscleSelected) : userBloc.getExerciseByUser('LPiPARbq74fnHIMgNMCGhM39qch2'),
+            stream: notifier.muscleFiltred ? userBloc.getExerciseForUserByMuscle(args.userUid, notifier.muscleSelected) : userBloc.getExerciseByUser(args.userUid),//RUTA CON ARGS: aqui le paso los parametros que obtuve
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
