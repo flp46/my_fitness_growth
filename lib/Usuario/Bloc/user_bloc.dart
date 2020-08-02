@@ -7,6 +7,7 @@ import 'package:my_fitness_growth/Ejercicio/UI/widgets/exercise_list.dart';
 import 'package:my_fitness_growth/Musculo/Repository/firestore_muscle_repository.dart';
 import 'package:my_fitness_growth/Usuario/Repository/firebase_auth_repository.dart';
 import 'package:my_fitness_growth/Usuario/Repository/firestore_my_training_repository.dart';
+import 'package:my_fitness_growth/filestorage_repository.dart';
 
 class UserBloc implements Bloc{
 
@@ -64,6 +65,13 @@ class UserBloc implements Bloc{
   ListViewWithExercise buildListViewWitheMyTraining(List<DocumentSnapshot> exerciseDocuments) => firestoreMyTrainingRepository.buildListViewWitheMyTrainingFirestore(exerciseDocuments);
   Stream<QuerySnapshot> getExerciseForUserByMuscle(String userUid, String muscleUid) => firestoreMyTrainingRepository.getExerciseForUserByMuscleFirestore(userUid, muscleUid);
 
+  
+  //FILESTORAGE BLOC
+  final firebaseStorageRepository = FirebaseStorageRepository();
+
+  Future<List<String>> getListWithUrls() => firebaseStorageRepository.getListWithUrlsFirebase();
+  
+  
   @override
   void dispose() {
     // TODO: implement dispose
